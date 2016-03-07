@@ -21,4 +21,5 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
 </widget>
