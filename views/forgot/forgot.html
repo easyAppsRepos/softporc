@@ -1,4 +1,4 @@
-<ion-view view-title="Forgot Password">
+<ion-view view-title="Olvide contrasena">
   <ion-content class="padding-top">
     <div class="text-center padding">
       <i class="icon ion-ios-infinite larger positive"></i>
@@ -13,13 +13,13 @@
         required>
       </label>
       <div class="form-errors" ng-messages="forgotForm.txtemail.$error" ng-if="forgotForm.$submitted">
-        <div class="form-error" ng-message="required">This field is required</div>
-        <div class="form-error" ng-message="email">This field is must be an email.</div>
-        <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
-        <div class="form-error" ng-message="maxlength">This field is must be less than 30 characters.</div>
+        <div class="form-error" ng-message="required">Este espacio es requerido</div>
+        <div class="form-error" ng-message="email">Este espacio debe ser un email</div>
+        <div class="form-error" ng-message="minlength">Este espacio debe tener al menos 5 caracteres</div>
+        <div class="form-error" ng-message="maxlength">Maximo 30 caracteres</div>
       </div>
       <div class="padding-top">
-      <input type="submit" value="Reset my password" class="button button-block button-positive"/>
+      <input type="submit" value="Resetear" class="button button-block button-positive"/>
   </form>
     </div>
   </ion-content>
