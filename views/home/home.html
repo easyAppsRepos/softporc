@@ -1,0 +1,51 @@
+<ion-view hide-back-button="false" hide-nav-bar ='true'>
+ <ion-nav-bar></ion-nav-bar>
+	<ion-side-menus  enable-menu-with-back-views="true">>
+		<ion-side-menu-content>
+			<ion-header-bar align-title="center" class="bar-positive">
+				<div class="buttons">
+					<button class="button icon ion-navicon" menu-toggle="left" ></button>
+				</div>
+				<h1 class="title">Dashboard</h1>
+			</ion-header-bar>
+			<ion-content class="padding-top">
+				<div class="card">
+					<div class="item item-text-wrap" >
+						<a href="#/home/granjas" ="granjas" class="item item-icon-left">
+						<i class="icon ion-home"></i>
+						Granjas
+						</a>
+					</div>
+					<div class="item item-text-wrap">
+						<a href="#/home/capturaDeDatos" class="item item-icon-left">
+						<i class="icon ion-android-folder-open"></i>
+						Captura de datos
+						</a>
+					</div>
+					<div class="item item-text-wrap">
+						<a href="#/home/inventarioInsumos" class="item item-icon-left">
+						<i class="icon ion-medkit"></i>
+						Medicinas e insumos
+						</a>
+					</div>
+				</div>	
+				<button ng-click="logOut()" class="button button-clear button-stable">Salir</button>
+			</ion-content>
+		</ion-side-menu-content>
+
+		<ion-side-menu side="left">
+			<ion-header-bar align-title="center" class="bar-dark">
+				<h1 class="title">SoftPorc</h1>
+			</ion-header-bar>
+			<br><br>
+			<ion-list>
+				<ion-item>JuanB.</ion-item>
+				<ion-item><a class='icon ion-gear-b' ></a><text style="margin-left: 20px;">Configuracion</text></ion-item>
+				<ion-item><a class='icon ion-ios-telephone-outline' ></a><text style="margin-left: 20px;">Contacto</text></ion-item>
+				<ion-item><a class='icon ion-log-out' ></a><text style="margin-left: 20px;">Cerrar sesion</text></ion-item>
+			</ion-list>
+		</ion-side-menu>
+	</ion-side-menus>
+</ion-view>
+
+

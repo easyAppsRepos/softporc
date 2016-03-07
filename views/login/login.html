@@ -1,0 +1,49 @@
+<ion-view title="Login">
+        <ion-content class="padding-top">
+          <div class="list text-center padding">
+           <!-- <i class="icon ion-ios-game-controller-b larger positive"></i>-->
+                 <div style="text-align:center;">
+                  <img src="img/logo.jpg" width="100%" height="auto">
+                </div>
+          </div>
+          <form novalidate name="loginForm" ng-submit="loginForm.$valid && signIn(user)">
+          <div class="list">
+            <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }" style="border: 1px solid gray;">
+              <span class="input-label">Email</span>
+              <input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
+              ng-minlength="5"
+              ng-maxlength="30"
+              required>
+            </label>
+            <!-- Edit this messages if you want -->
+            <div class="form-errors" ng-messages="loginForm.txtemail.$error" ng-if="loginForm.$submitted">
+              <div class="form-error" ng-message="required">Este campo es requerido</div>
+              <div class="form-error" ng-message="email">Este espacio debe ser un email</div>
+              <div class="form-error" ng-message="minlength">Al menos debe ser de 5 caracteres</div>
+              <div class="form-error" ng-message="maxlength">Debe ser menor a 30 carateres</div>
+            </div>
+            <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : loginForm.txtPassword.$invalid && loginForm.$submitted }" style="border: 1px solid gray;">
+              <span class="input-label">Contrasena</span>
+              <input name="txtPassword" type="password" ng-model="user.password" placeholder="Password"
+              ng-minlength="5"
+              ng-maxlength="30"
+              required>
+            </label>
+            <!-- Edit this messages if you want -->
+            <div class="form-errors" ng-messages="loginForm.txtPassword.$error" ng-if="loginForm.$submitted">
+            <div class="form-error" ng-message="required">Este campo es requerido</div>
+            <div class="form-error" ng-message="minlength">Al menos debe ser de 5 caracteres.</div>
+            <div class="form-error" ng-message="maxlength">Debe ser menor a 30 caracteres</div>
+            </div>
+          </div>
+           <div class="padding-top">
+          
+            <input type="submit" class="button button-block button-positive" value="Acceso">
+           <p class="text-center padding-top">
+                <a href="#/forgot" class="button button-clear button-positive">Olvido la contrasena</a><br><a href="#/register" class="button button-clear button-positive">Registrarse</a>
+          </div>
+
+    
+        </form>
+        </ion-content>
+</ion-view>
