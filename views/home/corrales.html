@@ -1,29 +1,45 @@
 <ion-view title="Corrales">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit='agregarCorrales(corral)'>
             <ion-list>
                 <label class="item item-select">
                     <span class="input-label">Granja</span>
-                    <select></select>
+                    <select ng-model="corral.granja"  ng-change="cambioGalpon(corral.granja)" required>
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+
+                           >
+                               {{g}}
+                           </option>
+                     </select>
                 </label>
                 <label class="item item-select">
                     <span class="input-label">Galpon</span>
-                    <select></select>
+                         <select ng-model="corral.galpon">
+                               <option   
+                                   ng-repeat="g in galponesGranja" 
+                                   value="{{g}}"
+
+                               >
+                                   {{g}}
+                               </option>
+                         </select>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Corral</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="corral.corral" required> 
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Area Disponible</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="corral.areaDisponible" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Capacidad</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="corral.capacidad" required>
                 </label>
             </ion-list>
-            <button class="button button-positive button-block ">Guardar</button>
+            <button class="button button-positive button-block" type="submit">Guardar</button>
         </form>
     </ion-content>
 </ion-view>

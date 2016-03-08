@@ -1,14 +1,23 @@
 <ion-view title="Galpones">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit='agregarGalpon(galpon)'>
             <ion-list>
                 <label class="item item-select">
                     <span class="input-label">Seleccionar Granja</span>
-                    <select></select>
+                    
+                    <select ng-model="galpon.granja">
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+                           >
+                               {{g}}
+                           </option>
+                     </select>
+                                       
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Nombre/Nª Galpon</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="galpon.nombre" required>
                 </label>
             </ion-list>
             <button class="button button-positive button-block ">Guardar</button>

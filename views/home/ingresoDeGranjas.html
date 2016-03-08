@@ -1,27 +1,33 @@
 <ion-view title="Ingreso de granjas">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <form class="list"></form>
-        <form class="list">
+
+        <form class="list"  name='ingresoGranjas' ng-submit='agregarGranja(granja)'>
+
             <label class="item item-input">
                 <span class="input-label">Nombre de la granja</span>
-                <input type="text" placeholder="">
+                <input type="text" placeholder="" ng-model="granja.nombre" required>
             </label>
+
             <label class="item item-input">
                 <span class="input-label">Area Disponible</span>
-                <input type="text" placeholder="">
+                <input type="text"  placeholder="" ng-model="granja.area" required>
             </label>
             <label class="item item-input">
                 <span class="input-label">Ubicación</span>
-                <input type="text" placeholder="">
+                <input type="text" placeholder="" ng-model="granja.ubicacion" required>
             </label>
             <label class="item item-input">
                 <span class="input-label">Sistema de alimentación</span>
-                <input type="text" placeholder="">
+                <input type="text" placeholder="" ng-model="granja.alimentacion" required>
             </label>
-        </form>
+      
         <div class="button-bar">
-            <button class="button button-positive button-block  icon-left ion-checkmark">Guardar</button>
-            <button class="button button-stable button-block ">Borrar</button>
+            <button  type="submit" class="button button-positive button-block  icon-left ion-checkmark">Guardar</button>
+
         </div>
+          </form>
+
+
+
     </ion-content>
 </ion-view>

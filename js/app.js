@@ -137,7 +137,7 @@ $stateProvider
     ;
 
 
-$urlRouterProvider.otherwise("/login");
+$urlRouterProvider.otherwise("/home");
 })
 // Changue this for your Firebase App URL.
 .constant('FURL', 'https://softporcapp.firebaseio.com/')
