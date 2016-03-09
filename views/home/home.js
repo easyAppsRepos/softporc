@@ -3,15 +3,11 @@
 
 angular.module('App').controller('homeController', function ($scope,$firebaseObject, $firebaseArray,$ionicSideMenuDelegate, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup, $firebaseObject, Auth, FURL, Utils) {
   
-//Carga de AJAX  (informacion de inicio de sesion) 
 
-
-
-  $scope.usuario=localStorage.getItem('ngStorage-email').replace('"','');
+    $scope.usuario=localStorage.getItem('ngStorage-email').replace('"','');
   $scope.usuario=$scope.usuario.replace('"','');
   $scope.usuarioID=localStorage.getItem("ngStorage-userkey").replace('"','');
   $scope.usuarioID=  $scope.usuarioID.replace('"','');
-  //console.log($scope.usuarioID);
   
 //  var ref = new Firebase(FURL+"/granjas/correoDueno");
   var ref = new Firebase(FURL);
@@ -19,7 +15,8 @@ angular.module('App').controller('homeController', function ($scope,$firebaseObj
 
 var refUsuario=new Firebase(FURL+'/granjas/'+$scope.usuarioID);
 
-function alertOK(tipo){
+function alertOK(mensaje){
+
 
 	if(tipo==1){Utils.alertshow("Granja agregada","La granja fue agregada correctamente");}
 	if(tipo==2){Utils.alertshow("Galpon agregado","El galpon fue agregado correctamente");}
@@ -30,12 +27,19 @@ function alertOK(tipo){
   $scope.granjas=$firebaseArray(ref.child("granjas"));
 
 // Attach an asynchronous callback to read the data at our posts reference
-refUsuario.on("value", function(snapshot) {
+refUsuario.on("value", function(snapshcot) {
   //$scope.granjasUser=Object.keys(snapshot.val());
+/*snapshot.forEach(function(messageSnapshot) {
+    // Will be called with a messageSnapshot for each child under the /messages/ node
+    var key = messageSnapshot.key();  // e.g. "-JqpIO567aKezufthrn8"
 
-  $scope.granjasUser=Object.keys(snapshot.val());
-}, function (errorObject) {
-  console.log("error: " + errorObject.code);
+
+    console.log(messageSnapshot.key());
+    console.log(snapshot.key());
+  });
+*/
+
+  $scope.granjasUser=Object.keys(snapshcot.val());
 });
 
 /*
@@ -55,18 +59,53 @@ And the HTML:
 </select>
 
 */
+$scope.cambioCorral=function(galponNombre,granjaNombre){
+console.log(galponNombre + "  s  "+granjaNombre);
 
-$scope.cambioGalpon=function(granjaNombre){
-	//console.log(granjaNombre);
-    refUsuario3= new Firebase(FURL+'/granjas/'+$scope.usuarioID+'/'+granjaNombre+'/galpones'); 
-	refUsuario3.on("value", function(snapshot) {
+
+
+    refUsuario3= new Firebase(FURL+'/granjas/'+$scope.usuarioID+'/'+granjaNombre+"/"+'galpones'+"/"+galponNombre+"/corrales"); 
+  refUsuario3.on("value", function(snapshot) {
   
-  $scope.galponesGranja=Object.keys(snapshot.val());
+  if(snapshot.val()==null){
+
+    console.log("undefuned");
+    $scope.corralesGranja={};
+  }
+
+  else{$scope.corralesGranja=Object.keys(snapshot.val());}
+  
+
   //console.log(Object.keys(snapshot.val()));
 }, function (errorObject) {
   console.log("error: " + errorObject.code);
 });
-	
+  
+
+
+
+
+}
+
+
+
+$scope.cambioGalpon=function(granjaNombre){
+
+  //console.log(granjaNombre);
+    refUsuario3= new Firebase(FURL+'/granjas/'+$scope.usuarioID+'/'+granjaNombre+'/galpones'); 
+  refUsuario3.on("value", function(snapshot) {
+
+
+if(snapshot.val()==null){
+
+    console.log("undefuned");
+    $scope.galponesGranja={};
+  }
+
+  else{$scope.galponesGranja=Object.keys(snapshot.val());}
+});
+
+  
 
 
 }
@@ -136,7 +175,123 @@ if(galpon.granja==undefined){alert("Todos los espacios son requeridos");}
 
   }
 
-  
+
+$scope.cdMortalidad=function(mortalidad){
+//console.log(mortalidad.granja);
+
+
+   refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'mortalidad');
+
+   refUsuario.child(mortalidad.granja).push( {
+        Fecha: mortalidad.fecha,
+        Lote:mortalidad.lote,
+        Sexo:mortalidad.sexo
+        },Utils.alertshow("Datos agregados correctamente"));
+
+
+
+
+}
+
+
+$scope.cdMedicamentos=function(medicamento){
+     refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'medicamentos');
+
+   refUsuario.push( {
+        Indicacion: medicamento.indicacion
+        },Utils.alertshow("Datos agregados correctamente"));
+}
+
+
+
+
+
+$scope.cdTrasladoAlimento=function(trasladoAlimento){
+
+   refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/trasladoAlimento');
+
+
+   refUsuario.push( {
+       Fecha: trasladoAlimento.fecha,
+       Origen:trasladoAlimento.origen,
+       Destino:trasladoAlimento.destino,
+       ReferenciaAlimento:trasladoAlimento.referencia,
+       Cantidad:trasladoAlimento.cantidad,
+       ValorFlete:trasladoAlimento.valor
+        },Utils.alertshow("Datos agregados correctamente"));
+
+}
+
+$scope.cdPatologias=function(patologia){
+
+     refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/patologias');
+     refUsuario.push({
+                      Causa:patologia.causa,
+                     Grupo:patologia.grupo,
+                     CausaMuerte:"'"+patologia.causaMuerte+"'", 
+                     CausaDescarte:"'"+patologia.Descarte+"'", 
+                     Activo:"'"+patologia.activo+"'", 
+                     CausaTratamiento:"'"+patologia.causaTratamiento+"'" 
+                  },Utils.alertshow("Datos agregados correctamente"));
+
+}
+
+$scope.cdFabricaAlimentos=function(fabrica){
+
+
+
+     refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/fabricaDeAlimentos');
+     refUsuario.push(
+  {Nombre: fabrica.nombre,
+  Activo: "'"+fabrica.activo+"'"},Utils.alertshow("Datos agregados correctamente"));
+
+}
+
+$scope.cdAgregarPrecebo=function(precebo){
+
+     refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'salidasPrecebo');
+
+   refUsuario.child(precebo.granja).push( {
+          Etapa:precebo.etapa,
+          PesoInicial:precebo.pesoI,
+           PesoFinal:precebo.pesoF,
+           EdadInicial: precebo.edadI,
+           Mortalidad:precebo.mortalidad,
+           Conversion:precebo.conversion,
+           Ganancia: precebo.ganancia,
+           GDP:precebo.gdp
+
+        },Utils.alertshow("Datos agregados correctamente"));
+
+
+}
+
+
+$scope.ingresarAnimales=function(animal){
+
+
+
+
+   refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'IngresoAnimal/'+animal.granja+"/"+animal.galpon+"/"+animal.corral);
+
+   refUsuario.push( {
+ lote: animal.lote, 
+ edad: animal.edad, 
+ numeroMachos: animal.numeroMachos, 
+ numeroHembras:animal.numeroHembras, 
+ pesoTotal: animal.pesoTotal, 
+ remision: animal.remision, 
+ valorLote: animal.valorLote,
+ Procedencia:animal.procedencia,
+ Genetica:animal.genetica,
+ Observaciones:animal.observaciones
+},Utils.alertshow("Datos agregados correctamente"));
+
+
+
+
+
+}
 
   $scope.logOut = function () {
       Auth.logout();
@@ -146,3 +301,23 @@ if(galpon.granja==undefined){alert("Todos los espacios son requeridos");}
 
 }
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

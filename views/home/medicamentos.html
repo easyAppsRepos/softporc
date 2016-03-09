@@ -1,13 +1,13 @@
 <ion-view title="Indicaciones Medicamentos">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit='cdMedicamentos(medicamento)'>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Indicacion</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="medicamento.indicacion" required>
                 </label>
             </ion-list>
-            <button class="button button-positive button-block ">Guardar</button>
+            <button type='submit'class="button button-positive button-block ">Guardar</button>
         </form>
     </ion-content>
 </ion-view>

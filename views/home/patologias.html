@@ -1,22 +1,21 @@
 <ion-view title="Patologias">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list"  ng-submit='cdPatologias(patologia)'>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Causa</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model='patologia.causa' required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Grupo</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model='patologia.grupo' required>
                 </label>
             </ion-list>
-            <ion-checkbox>Causa Muerte</ion-checkbox>
-            <ion-checkbox>Causa Descarte</ion-checkbox>
-            <ion-checkbox>Causa Tratamiento</ion-checkbox>
-            <ion-checkbox>Causa Tratamiento</ion-checkbox>
-            <ion-toggle toggle-class="toggle-positive">Activo</ion-toggle>
-            <button class="button button-stable button-block ">Sign up</button>
+            <ion-checkbox ng-model="patologia.causaMuerte">Causa Muerte</ion-checkbox>
+            <ion-checkbox ng-model="patologia.causaDescarte">Causa Descarte</ion-checkbox>
+            <ion-checkbox ng-model="patologia.causaTratamiento">Causa Tratamiento</ion-checkbox>
+            <ion-toggle toggle-class="toggle-positive" ng-model="patologia.activo">Activo</ion-toggle>
+            <button type='submit' class="button button-stable button-block ">Guardar</button>
         </form>
     </ion-content>
 </ion-view>

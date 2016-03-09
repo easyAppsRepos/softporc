@@ -1,0 +1,52 @@
+<ion-view title="Salida Precebo">
+    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
+        <form class="list" ng-submit='cdAgregarPrecebo(precebo)'>
+            <ion-list>
+                <label class="item item-select">
+                    <span class="input-label">Seleccionar Granja</span>
+                    <select ng-model="precebo.granja">
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+                           >
+                               {{g}}
+                           </option>
+                     </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Etapa</span>
+                    <input type="text" placeholder="" ng-model='precebo.etapa' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Peso Inicial</span>
+                    <input type="number" placeholder="" ng-model='precebo.pesoI' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Edad inicial</span>
+                    <input type="number" placeholder="" ng-model='precebo.edadI' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Peso Final</span>
+                    <input type="number" placeholder="" ng-model='precebo.pesoF' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Mortalidad</span>
+                    <input type="number" placeholder="" ng-model='precebo.mortalidad' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Conversión</span>
+                    <input type="number" placeholder="" ng-model='precebo.conversion' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Ganacia</span>
+                    <input type="number" placeholder="" ng-model='precebo.ganancia' required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">GDP</span>
+                    <input type="text" placeholder="" ng-model='precebo.gdp' required>
+                </label>
+            </ion-list>
+            <button type='submit' class="button button-positive button-block ">Guardar</button>
+        </form>
+    </ion-content>
+</ion-view>

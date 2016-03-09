@@ -1,33 +1,33 @@
 <ion-view title="Translado Alimento">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list"  ng-submit='cdTrasladoAlimento(trasladoAlimento)'>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Fecha</span>
-                    <input type="date" placeholder="">
+                    <input type="text" placeholder="" ng-model="trasladoAlimento.fecha" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Origen</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="trasladoAlimento.origen" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Destino</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="trasladoAlimento.destino" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Referencia Alimento</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="trasladoAlimento.referencia" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Cantidad</span>
-                    <input type="number" placeholder="">
+                    <input type="number" placeholder="" ng-model="trasladoAlimento.cantidad" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Valor Flete</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="trasladoAlimento.valor" required>
                 </label>
             </ion-list>
-            <button class="button button-positive button-block ">Guardar</button>
+            <button class="button button-positive button-block " type="submit">Guardar</button>
         </form>
     </ion-content>
 </ion-view>

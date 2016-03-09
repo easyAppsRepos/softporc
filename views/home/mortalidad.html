@@ -1,25 +1,32 @@
 <ion-view title="Mortalidad">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list"   ng-submit='cdMortalidad(mortalidad)'>
             <ion-list>
                 <label class="item item-select">
                     <span class="input-label">Seleccionar Granja</span>
-                    <select></select>
+                     <select ng-model="mortalidad.granja">
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+                           >
+                               {{g}}
+                           </option>
+                     </select>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Fecha</span>
-                    <input type="date" placeholder="">
+                    <input type="text" placeholder="" ng-model="mortalidad.fecha" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Lote</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="mortalidad.lote" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Sexo</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="mortalidad.sexo" required>
                 </label>
             </ion-list>
-            <button class="button button-stable button-block ">Guardar</button>
+            <button type="submit" class="button button-stable button-block ">Guardar</button>
         </form>
     </ion-content>
 </ion-view>

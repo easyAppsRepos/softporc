@@ -1,0 +1,89 @@
+<ion-view title="Ingresar Animales">
+    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
+        <form class="list" ng-submit='ingresarAnimales(animal)'>
+            <ion-list>
+                <label class="item item-select">
+                    <span class="input-label">Granja</span>
+                    <select ng-model="animal.granja"  ng-change="cambioGalpon(animal.granja)" required>
+                           <option name='nombregranja'
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+
+                           >
+                               {{g}}
+                           </option>
+                     </select>
+                </label>
+                <label class="item item-select">
+                    <span class="input-label">Galpon</span>
+                         <select ng-model="animal.galpon" ng-change="cambioCorral(animal.galpon,animal.granja)" >
+                               <option   
+                                   ng-repeat="g in galponesGranja" 
+                                   value="{{g}}"
+
+                               >
+                                   {{g}}
+                               </option>
+                         </select>
+
+                </label>
+                <label class="item item-select">
+                    <span class="input-label">Corral</span>
+                         <select ng-model="animal.corral">
+                               <option   
+                                   ng-repeat="c in corralesGranja" 
+                                   value="{{c}}"
+
+                               >
+                                   {{c}}
+                               </option>
+                         </select>
+                         
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Lote</span>
+                    <input type="text" placeholder="" ng-model="animal.lote" required> 
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Edad</span>
+                    <input type="text" placeholder="" ng-model="animal.edad" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Numero de machos</span>
+                    <input type="text" placeholder="" ng-model="animal.numeroMachos" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Numero de hembras</span>
+                    <input type="text" placeholder="" ng-model="animal.numeroHembras" required>
+                </label>           
+                                <label class="item item-input">
+                    <span class="input-label">Peso total</span>
+                    <input type="text" placeholder="" ng-model="animal.pesoTotal" required>
+                </label>    
+                                <label class="item item-input">
+                    <span class="input-label">Remision</span>
+                    <input type="text" placeholder="" ng-model="animal.remision" required>
+                </label> 
+
+                                <label class="item item-input">
+                    <span class="input-label">Valor lote</span>
+                    <input type="text" placeholder="" ng-model="animal.valorLote" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Procedencia</span>
+                    <input type="text" placeholder="" ng-model="animal.procedencia" required>
+                </label>
+                                <label class="item item-input">
+                    <span class="input-label">Genetica animal</span>
+                    <input type="text" placeholder="" ng-model="animal.genetica" required>
+                </label>
+                                <label class="item item-input">
+                    <span class="input-label">Observaciones</span>
+                    <input type="text" placeholder="" ng-model="animal.observaciones" required>
+                </label>
+
+            </ion-list>
+            <button class="button button-positive button-block" type="submit">Guardar</button>
+        </form>
+    </ion-content>
+</ion-view>

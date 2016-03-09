@@ -76,6 +76,19 @@ $stateProvider
       controller:'homeController'
     })
 
+      .state('ingresoAnimal', {
+      url: '/home/capturaDeDatos/ingresoAnimal',
+      templateUrl: 'views/home/ingresarAnimal.html',
+      controller:'homeController'
+    })
+
+
+                 .state('salidasPrecebo', {
+      url: '/home/capturaDeDatos/salidasPrecebo',
+      templateUrl: 'views/home/salidasPrecebo.html',
+      controller:'homeController'
+    })       
+
             .state('transladoAlimento', {
       url: '/home/capturaDeDatos/transladoAlimento',
       templateUrl: 'views/home/transladoAlimento.html',
