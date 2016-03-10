@@ -15,7 +15,7 @@ angular.module('App').controller('homeController', function ($scope,$firebaseObj
 
 var refUsuario=new Firebase(FURL+'/granjas/'+$scope.usuarioID);
 
-function alertOK(mensaje){
+function alertOK(tipo){
 
 
 	if(tipo==1){Utils.alertshow("Granja agregada","La granja fue agregada correctamente");}
@@ -112,7 +112,7 @@ if(snapshot.val()==null){
 
   $scope.agregarGranja=function(granja){
 
-   
+    refUsuario= new Firebase(FURL+'/granjas/'+$scope.usuarioID); 
 
    refUsuario.child(granja.nombre).set(
         {
@@ -120,7 +120,7 @@ if(snapshot.val()==null){
         ubicacion: granja.ubicacion,
         sistemaAlimentacion:granja.alimentacion,
         galpones:{}
-        }, alertOK(1)
+        }, Utils.alertshow("Granja agregada","La granja fue agregada correctamente")
     );
 
 
@@ -136,7 +136,7 @@ if(galpon.granja==undefined){alert("Todos los espacios son requeridos");}
         {
         nombre: galpon.nombre,
         corrales:{}
-        }, alertOK(2)
+        },Utils.alertshow("Galpon agregado","El galpon fue agregado correctamente")
     );
  }
 
@@ -152,7 +152,7 @@ if(galpon.granja==undefined){alert("Todos los espacios son requeridos");}
         corral: corral.corral,
         areaDisponible:corral.areaDisponible,
         capacidad:corral.capacidad
-        }, alertOK(3)
+        }, Utils.alertshow("Corral agregado","El corral fue agregado correctamente")
     );
  }
 
@@ -170,7 +170,7 @@ if(galpon.granja==undefined){alert("Todos los espacios son requeridos");}
         TerceraDosis:inmunocastracion.tercera,
         Rastro:inmunocastracion.rastro,
         PeriodoDeVenta:inmunocastracion.pDeVenta
-        }, alertOK(4)
+        },Utils.alertshow("Inmunocastracion agregada","La inmunocastracion fue agregada correctamente")
     );}
 
   }
