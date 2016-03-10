@@ -1,44 +1,53 @@
 <ion-view title="Compra Medicamentos">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit='compraMedicamento(medicamento)'>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Fecha</span>
-                    <input type="date" placeholder="">
+                    <input type="text" placeholder="" ng-model="medicamento.fecha" required>
                 </label>
-                <label class="item item-input">
-                    <span class="input-label">Granja</span>
-                    <input type="text" placeholder="">
+                <label class="item item-select">
+                    <span class="input-label">Seleccionar Granja</span>
+                     <select ng-model="medicamento.granja"  >
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+
+                           >
+                               {{g}}
+                           </option>
+                     </select>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Producto</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder=""  ng-model="medicamento.producto" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Cantidad</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder=""  ng-model="medicamento.cantidad" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Lote de Fabricación</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder=""  ng-model="medicamento.loteF" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Lote de Vencimiento</span>
-                    <input type="date" placeholder="">
+                    <input type="text" placeholder=""  ng-model="medicamento.loteV" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Retiro</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder=""  ng-model="medicamento.retiro" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Valor</span>
-                    <input type="number" placeholder="">
+                    <input type="number" placeholder="" ng-model="medicamento.valor" required>
                 </label>
             </ion-list>
-        </form>
-        <div class="button-bar">
-            <button class="button button-positive button-block ">Guardar</button>
+                    <div class="button-bar">
+            <button class="button button-positive button-block " type='submit'>Guardar</button>
             <button class="button button-stable button-block ">Borrar</button>
         </div>
+        </form>
+
     </ion-content>
 </ion-view>

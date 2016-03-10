@@ -1,34 +1,46 @@
 <ion-view title="Consumo de Insumos">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
-            <form class="list">
+ 
+            <form class="list" ng-submit='consumoInsumos(insumo)'>
                 <label class="item item-input">
                     <span class="input-label">Fecha</span>
-                    <input type="date" placeholder="">
+                    <input type="text" placeholder="" ng-model="insumo.fecha" required>
                 </label>
                 <label class="item item-select">
                     <span class="input-label">Seleccionar Granja</span>
-                    <select></select>
+                    <select ng-model="insumo.granja"  >
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+
+                           >
+                               {{g}}
+                           </option>
+                     </select>
                 </label>
                 <label class="item item-select">
                     <span class="input-label">Seleccionar Producto</span>
-                    <select></select>
+                    <select ng-model="insumo.producto">
+                        <option  value="A">A</option>
+                        <option  value="B">B</option>
+                        <option  value="C">C</option>
+                    </select>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Cantidad</span>
-                    <input type="number" placeholder="">
+                    <input type="number" placeholder="" ng-model="insumo.cantidad" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Lote</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="insumo.lote" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Ubicación</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="insumo.ubicacion" required>
                 </label>
-            </form>
+                        <button class="button button-positive button-block" type='submit'>Guardar</button>
+
         </form>
-        <form class="list"></form>
-        <button class="button button-positive button-block ">Guardar</button>
+
     </ion-content>
 </ion-view>

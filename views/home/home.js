@@ -37,9 +37,17 @@ refUsuario.on("value", function(snapshcot) {
     console.log(messageSnapshot.key());
     console.log(snapshot.key());
   });
-*/
 
-  $scope.granjasUser=Object.keys(snapshcot.val());
+*/
+  if(snapshcot.val()==null){
+
+    console.log("undefuned");
+    $scope.corralesGranja={};
+  }
+
+  else{ $scope.granjasUser=Object.keys(snapshcot.val());}
+
+ 
 });
 
 /*
@@ -178,8 +186,8 @@ if(galpon.granja==undefined){alert("Todos los espacios son requeridos");}
 
 $scope.cdMortalidad=function(mortalidad){
 //console.log(mortalidad.granja);
-
-
+if(mortalidad.granja==undefined ){alert("Todos los espacios son requeridos");}
+else{
    refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'mortalidad');
 
    refUsuario.child(mortalidad.granja).push( {
@@ -190,7 +198,7 @@ $scope.cdMortalidad=function(mortalidad){
 
 
 
-
+}
 }
 
 
@@ -249,6 +257,9 @@ $scope.cdFabricaAlimentos=function(fabrica){
 
 $scope.cdAgregarPrecebo=function(precebo){
 
+
+if(precebo.granja==undefined ){alert("Todos los espacios son requeridos");}
+else{
      refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'salidasPrecebo');
 
    refUsuario.child(precebo.granja).push( {
@@ -263,15 +274,14 @@ $scope.cdAgregarPrecebo=function(precebo){
 
         },Utils.alertshow("Datos agregados correctamente"));
 
-
+}
 }
 
 
 $scope.ingresarAnimales=function(animal){
 
-
-
-
+  if(animal.granja==undefined || animal.corral==undefined || animal.galpon==undefined  ){alert("Todos los espacios son requeridos");}
+else{
    refUsuario= new Firebase(FURL+'/capturaDeDatos/'+$scope.usuarioID+'/'+'IngresoAnimal/'+animal.granja+"/"+animal.galpon+"/"+animal.corral);
 
    refUsuario.push( {
@@ -286,12 +296,121 @@ $scope.ingresarAnimales=function(animal){
  Genetica:animal.genetica,
  Observaciones:animal.observaciones
 },Utils.alertshow("Datos agregados correctamente"));
+}}
 
 
 
+$scope.compraAlimento=function(alimento){
 
+if(alimento.granja==undefined ){alert("Todos los espacios son requeridos");}
+else{
+   refUsuario= new Firebase(FURL+'/inventarioInsumos/'+$scope.usuarioID+'/'+alimento.granja+"/compra/alimento");
+
+   refUsuario.push( {
+ fecha: alimento.fecha, 
+ referencia: alimento.referencia, 
+ cantidad: alimento.cantidad, 
+ loteFabricacion:alimento.lote, 
+ valorAlimento: alimento.valorA, 
+ valorTotal: alimento.valorT, 
+ medicado: "'"+alimento.medicado+"'"
+},Utils.alertshow("Datos agregados correctamente"));
+}}
+
+
+$scope.compraMedicamento=function(medicamento){
+if(medicamento.granja==undefined ){alert("Todos los espacios son requeridos");}
+
+else{
+   refUsuario= new Firebase(FURL+'/inventarioInsumos/'+$scope.usuarioID+'/'+medicamento.granja+"/compra/medicamento");
+
+   refUsuario.push( {
+ fecha: medicamento.fecha, 
+ producto: medicamento.producto, 
+ cantidad: medicamento.cantidad, 
+ loteFabricacion:medicamento.loteF, 
+  loteVencimiento:medicamento.loteV,
+  retiro: medicamento.retiro, 
+ valor: medicamento.valor
+},Utils.alertshow("Datos agregados correctamente"));
+}
+}
+
+
+$scope.compraInsumos=function(insumo){
+
+if(insumo.granja==undefined ){alert("Todos los espacios son requeridos");}
+else{
+     refUsuario= new Firebase(FURL+'/inventarioInsumos/'+$scope.usuarioID+'/'+insumo.granja+"/compra/insumos");
+
+   refUsuario.push( {
+ fecha: insumo.fecha, 
+ producto: insumo.producto, 
+ cantidad: insumo.cantidad, 
+ valor: insumo.valor
+},Utils.alertshow("Datos agregados correctamente"));
 
 }
+}
+
+$scope.pedidoMedicamento=function(medicamento){
+
+if(medicamento.granja==undefined ){alert("Todos los espacios son requeridos");}
+
+else{
+     refUsuario= new Firebase(FURL+'/inventarioInsumos/'+$scope.usuarioID+'/'+medicamento.granja+"/pedidos/medicamentos");
+
+   refUsuario.push( {
+ fecha: medicamento.fecha, 
+ producto: medicamento.producto, 
+ cantidad: medicamento.cantidad, 
+ valor: medicamento.valor,
+  lote: medicamento.lote
+},Utils.alertshow("Datos agregados correctamente"));
+
+}
+}
+
+
+$scope.consumoFarmacos=function(farmaco){
+
+if(farmaco.granja==undefined ){alert("Todos los espacios son requeridos");}
+else{
+
+     refUsuario= new Firebase(FURL+'/inventarioInsumos/'+$scope.usuarioID+'/'+farmaco.granja+"/consumo/farmacos");
+
+   refUsuario.push( {
+    nombre:farmaco.nombre,
+ producto: farmaco.producto, 
+ cantidad: farmaco.cantidad, 
+  lote: farmaco.lote,
+  ubicacion:farmaco.ubicacion
+},Utils.alertshow("Datos agregados correctamente"));
+}
+
+}
+
+
+
+$scope.consumoInsumos=function(insumo){
+
+  if(insumo.producto==undefined || insumo.granja==undefined ){alert("Todos los espacios son requeridos");}
+else{
+     refUsuario= new Firebase(FURL+'/inventarioInsumos/'+$scope.usuarioID+'/'+insumo.granja+"/consumo/insumos");
+
+   refUsuario.push( {
+    fecha:insumo.fecha,
+ producto: insumo.producto, 
+ cantidad: insumo.cantidad, 
+  lote: insumo.lote,
+  ubicacion: insumo.ubicacion
+},Utils.alertshow("Datos agregados correctamente"));
+}
+
+}
+
+
+
 
   $scope.logOut = function () {
       Auth.logout();

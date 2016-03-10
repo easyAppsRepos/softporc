@@ -1,41 +1,50 @@
 <ion-view title="Compra Alimento">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit='compraAlimento(alimento)'>
             <ion-list>
                 <label class="item item-input">
                     <span class="input-label">Fecha</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="alimento.fecha" required>
                 </label>
                 <label class="item item-select">
-                    <span class="input-label">Seleccionar Grnja</span>
-                    <select></select>
+                    <span class="input-label">Seleccionar Granja</span>
+                     <select ng-model="alimento.granja"  required>
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+
+                           >
+                               {{g}}
+                           </option>
+                     </select>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Referencia</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="alimento.referencia" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Cantidad</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="alimento.cantidad" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Lote de fabricación</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="alimento.lote" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Valor Alimentos</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="alimento.valorA" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Valor total</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="alimento.valorT" required>
                 </label>
             </ion-list>
-            <ion-toggle toggle-class="toggle-positive">Medicado</ion-toggle>
-        </form>
-        <div class="button-bar">
-            <button class="button button-positive button-block ">Guardar</button>
+            <ion-toggle toggle-class="toggle-positive" ng-model="alimento.medicado" >Medicado</ion-toggle>
+            <div class="button-bar">
+            <button class="button button-positive button-block " type='submit'>Guardar</button>
             <button class="button button-stable button-block ">Borrar</button>
         </div>
+        </form>
+
     </ion-content>
 </ion-view>

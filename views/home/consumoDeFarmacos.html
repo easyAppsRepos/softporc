@@ -1,33 +1,41 @@
 <ion-view title="Consumo de farmacos">
     <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list">
+        <form class="list" ng-submit='consumoFarmacos(farmaco)'>
             <ion-list>
                 <label class="item item-input">
-                    <span class="input-label">Name</span>
-                    <input type="text" placeholder="">
+                    <span class="input-label">Nombre</span>
+                    <input type="text" placeholder="" ng-model="farmaco.nombre" required>
                 </label>
                 <label class="item item-select">
                     <span class="input-label">Seleccionar Granja</span>
-                    <select></select>
+                    <select ng-model="farmaco.granja"  >
+                           <option 
+                               ng-repeat="g in granjasUser" 
+                               value="{{g}}"
+
+                           >
+                               {{g}}
+                           </option>
+                     </select>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Producto</span>
-                    <input type="text" placeholder="">
+                    <input type="text" placeholder="" ng-model="farmaco.producto" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Cantidad</span>
-                    <input type="number" placeholder="">
+                    <input type="number" placeholder="" ng-model="farmaco.cantidad" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Lote</span>
-                    <input type="number" placeholder="">
+                    <input type="number" placeholder="" ng-model="farmaco.lote" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Ubicacion</span>
-                    <input type="number" placeholder="">
+                    <input type="number" placeholder="" ng-model="farmaco.ubicacion" required>
                 </label>
             </ion-list>
-            <button class="button button-positive button-block ">Guardar</button>
+            <button class="button button-positive button-block " type='submit' >Guardar</button>
         </form>
     </ion-content>
 </ion-view>
