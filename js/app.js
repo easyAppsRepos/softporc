@@ -154,7 +154,7 @@ $urlRouterProvider.otherwise("/login");
 })
 // Changue this for your Firebase App URL.
 .constant('FURL', 'https://softporcapp.firebaseio.com/')
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -164,5 +164,38 @@ $urlRouterProvider.otherwise("/login");
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+                if(window.Connection) {
+                if(navigator.connection.type == Connection.NONE) {
+                    $ionicPopup.confirm({
+                        title: "Internet Disconnected",
+                        content: "The internet is disconnected on your device."
+                    })
+
+                }
+                else{
+                        $ionicPopup.confirm({
+                        title: "Internet OK",
+                        content: "The internet is OK"
+                    })
+
+
+                }
+            }
+      
+
+      
   });
 });
+
+
+
+
+
+
+  
+
+   
+       
+
+    
